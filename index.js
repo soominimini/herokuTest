@@ -6,7 +6,7 @@ var querystring = require('querystring');
 var express = require('express');
 var app = express();
 
-
+var personal_id =0;
 function shuffle(array) {
   let currentIndex = array.length,  randomIndex;
 
@@ -46,6 +46,11 @@ sourceHTML_inter = replacedHTML_inter;
 // app.listen(app.get('port'), function () {
 //   console.log('App is running, server is listening on port ', app.get('port'));
 // });
+
+
+
+const dir = './data';
+
 var port = process.env.PORT || 3000;
 app.listen(port, "0.0.0.0", function() {
 console.log("Listening on Port 3000");
@@ -203,10 +208,16 @@ app.post(['/lastPage'], function(req, res) {
       });
     }
 });
+
+fs.readdir(dir, (err, files) => {
+  console.log(files.length);
+  personal_id = files.length;
+  var stream = fs.createWriteStream(personal_id+".txt");
+});
   function readWrite(input_data){
-    fs.appendFileSync('test.txt',String(input_data.gender)+" "+ String(input_data.age)+"\n");
+    fs.appendFileSync("data/"+personal_id+".txt",String(input_data.gender)+" "+ String(input_data.age)+"\n");
   }
 
     function readWrite_PES(input_data){
-    fs.appendFileSync('test.txt',Object.values(input_data)+"\n");
+    fs.appendFileSync("data/"+personal_id+".txt",Object.values(input_data)+"\n");
   }

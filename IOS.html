@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible"
+          content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>
+        Build a Survey Form using HTML and CSS
+    </title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
+     <script src="https://unpkg.com/jquery/dist/jquery.min.js"></script>
+    <script src="https://unpkg.com/survey-jquery@1.9.134/survey.jquery.min.js"></script>
+    <script src="https://unpkg.com/survey-jquery@1.9.134/themes/index.min.js"></script>
+ <link rel="stylesheet" href="https://unpkg.com/survey-jquery@1.9.134/defaultV2.min.css" />
+
+    <style>
+        /* Styling the Body element
+        i.e. Color, Font, Alignment */
+        body {
+            background-color: #ffffff;
+            font-family: Verdana;
+            text-align: center;
+        }
+
+        /* Styling the Form (Color, Padding, Shadow) */
+        form {
+            background-color: #fff;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 30px 20px;
+            box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
+          position: relative;
+        }
+
+        /* Styling form-control Class */
+        .form-control {
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        /* Styling form-control Label */
+        .form-control label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* Styling form-control input,
+        select, textarea */
+        .form-control input,
+        .form-control select,
+        .form-control textarea {
+            border: 1px solid #777;
+            border-radius: 2px;
+            font-family: inherit;
+            padding: 10px;
+            display: block;
+            width: 95%;
+          position: relative;
+        }
+
+        /* Styling form-control Radio
+        button and Checkbox */
+        .form-control input[type="radio"],
+        .form-control input[type="checkbox"] {
+            display: inline-block;
+            width: auto;
+
+        }
+
+        /* Styling Button */
+        button {
+            background-color: #05c46b;
+            border: 1px solid #777;
+            border-radius: 2px;
+            font-family: inherit;
+            font-size: 21px;
+            display: block;
+            width: 100%;
+            margin-top: 50px;
+            margin-bottom: 20px;
+        }
+a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.previous {
+  background-color: #f1f1f1;
+  color: black;
+}
+
+.next {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.round {
+  border-radius: 50%;
+}
+    </style>
+</head>
+<body>
+<p>Inclusion of Other in the Self (IOS) Scale</p>
+<br><br>
+<form id="myform" method="post"  action="./Interact" >
+<p>Please check the picture below that best describes the relationship. </p>
+<input type="radio" id="1_1" name="1" value="1">
+<img src="../img/IOS1.png" width="10%" height="10%">
+<label for="1_1"></label>
+<input type="radio" id="1_2" name="1" value="2">
+<img src="../img/IOS2.png" width="10%" height="10%">
+<label for="1_2"></label>
+<input type="radio" id="1_3" name="1" value="3" style="left: 10%">
+<img src="../img/IOS3.png" width="10%" height="10%">
+<label for="1_3"></label>
+<input type="radio" id="1_4" name="1" value="4">
+<img src="../img/IOS4.png" width="10%" height="10%">
+<label for="1_4"></label>
+<input type="radio" id="1_5" name="1" value="5">
+<img src="../img/IOS5.png" width="10%" height="10%">
+<label for="1_5"></label>
+<input type="radio" id="1_6" name="1" value="6">
+<img src="../img/IOS6.png" width="10%" height="10%">
+<label for="1_6"></label>
+<input type="radio" id="1_7" name="1" value="7">
+<img src="../img/IOS7.png" width="10%" height="10%">
+<label for="1_7"></label>
+
+<br><br>
+ <input type="submit" name="submit" id = "form_submit" onclick="check(event)">
+    </form>
+<script>
+  function check(event){
+    if ($('input[name="1"]:checked').length == 0) {
+    // do something here
+      alert("please check all items")
+      event.preventDefault()
+}
+  }
+</script>
+
+</body>
+
+</html>
