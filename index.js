@@ -75,7 +75,7 @@ app.get('/', function (req, res) {
     }
 });
 app.post(['/IOS'], function(req, res) {
-    res.sendFile("C:/xampp/htdocs/srproject/node_modules/IOS.html");
+    res.sendFile(__dirname + "/IOS.html");
     inx+=1;
     if (req.method == 'POST') {
       req.on('data', function (chunk) {
