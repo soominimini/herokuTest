@@ -1,0 +1,3 @@
+F 1980
+5,5,3,3,5,3,3,5,3,5,5,3,5,3,5,5,3,5,3,3,제출,speech_emotion
+undefined undefined
