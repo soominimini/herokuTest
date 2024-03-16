@@ -16,5 +16,9 @@
     "querystring": "^0.2.1",
     "xlsx": "^0.18.5"
   },
-  "start": "node index.js"
+   "scripts": {
+  	"start": "node index.js",
+     
+    "web": "npm run start:prod"
+ }
 }
