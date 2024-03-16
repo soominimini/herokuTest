@@ -50,11 +50,7 @@ sourceHTML_inter = replacedHTML_inter;
 
 
 const dir = './data';
-fs.readdir(dir, (err, files) => {
-  console.log(files.length);
-  personal_id = files.length;
-  var stream = fs.createWriteStream("data/"+personal_id+".txt");
-});
+
 var port = process.env.PORT || 3000;
 app.listen(port, "0.0.0.0", function() {
 console.log("Listening on Port 3000");
@@ -212,12 +208,16 @@ app.post(['/lastPage'], function(req, res) {
       });
     }
 });
-
+fs.readdir(dir, (err, files) => {
+  console.log(files.length);
+  personal_id = files.length;
+  var stream = fs.createWriteStream("./data/"+personal_id+".txt");
+});
 
   function readWrite(input_data){
-    fs.appendFileSync("data/"+personal_id+".txt",String(input_data.gender)+" "+ String(input_data.age)+"\n");
+    fs.appendFileSync("./data/"+personal_id+".txt",String(input_data.gender)+" "+ String(input_data.age)+"\n");
   }
 
     function readWrite_PES(input_data){
-    fs.appendFileSync("data/"+personal_id+".txt",Object.values(input_data)+"\n");
+    fs.appendFileSync("./data/"+personal_id+".txt",Object.values(input_data)+"\n");
   }
