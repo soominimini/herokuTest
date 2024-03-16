@@ -43,6 +43,9 @@ var new_form_inter = "<form id=\"myform\" method=\"post\" action=\""+vid_pick[in
 var replacedHTML_inter = sourceHTML_inter.replace("<form id=\"myform\" method=\"post\" action=\"./2\" >", new_form_inter);
 sourceHTML_inter = replacedHTML_inter;
 
+app.listen(app.get('port'), function () {
+  console.log('App is running, server is listening on port ', app.get('port'));
+});
 
 
 
@@ -52,8 +55,160 @@ sourceHTML_inter = replacedHTML_inter;
 app.set('port', (process.env.PORT || 5000));
 app.get('/', function (req, res) {
    res.sendFile(__dirname + "/index.html");
-})
-
-app.listen(app.get('port'), function () {
-  console.log('App is running, server is listening on port ', app.get('port'));
 });
+  app.post('/PES', function(req, res) {
+    res.send(replacedHTML);
+    // res.sendFile(sourceHTML);
+
+    if (req.method == 'POST') {
+      req.on('data', function (chunk) {
+        var data = querystring.parse(chunk.toString());
+
+        console.log(data);
+        readWrite(data);
+
+
+      });
+    }
+});
+app.post(['/IOS'], function(req, res) {
+    res.sendFile("C:/xampp/htdocs/srproject/node_modules/IOS.html");
+    inx+=1;
+    if (req.method == 'POST') {
+      req.on('data', function (chunk) {
+        // console.log(chunk.toString());
+        var data = querystring.parse(chunk.toString());
+        // res.writeHead(200, {'Content-Type': 'text/html'});
+        // res.end('ID : ' + data.gender + 'PW : ' + data.age);
+        readWrite(data);
+        console.log("inx:",inx);
+        if(inx<7) {
+      let new_form_inter2 = "<form id=\"myform\" method=\"post\" action=\""
+          new_form_inter2 = new_form_inter2+vid_pick[inx];
+        new_form_inter2 = new_form_inter2+"\">"
+        replacedHTML_inter = sourceHTML_inter.replace(new_form_inter, new_form_inter2);
+        sourceHTML_inter = replacedHTML_inter;
+      new_form_inter = new_form_inter2;
+    }
+else{
+
+   let new_form_inter2 = "<form id=\"myform\" method=\"post\" action=\"./lastPage\">"
+      console.log("new_form_inter:",new_form_inter2);
+        replacedHTML_inter = sourceHTML_inter.replace(new_form_inter, new_form_inter2);
+        sourceHTML_inter = replacedHTML_inter;
+      new_form_inter = new_form_inter2;
+        }
+      });
+    }
+});
+
+app.post(['/Interact'], function(req, res) {
+
+        res.send(replacedHTML_inter);
+    if (req.method == 'POST') {
+      req.on('data', function (chunk) {
+        // console.log(chunk.toString());
+        var data = querystring.parse(chunk.toString());
+        console.log(data);
+        // res.writeHead(200, {'Content-Type': 'text/html'});
+        // res.end('ID : ' + data.gender + 'PW : ' + data.age);
+        readWrite(data);
+      });
+    }
+});
+  app.post(['/1'], function(req, res) {
+    res.sendFile(__dirname + "/speech.html");
+    if (req.method == 'POST') {
+      req.on('data', function (chunk) {
+        var data = querystring.parse(chunk.toString());
+        console.log(data);
+        Object.assign(data, {vid_type: "speech"});
+        readWrite_PES(data);
+      });
+    }
+});
+    app.post(['/2'], function(req, res) {
+    res.sendFile(__dirname + "/emotion.html");
+    if (req.method == 'POST') {
+      req.on('data', function (chunk) {
+        var data = querystring.parse(chunk.toString());
+        console.log(data);
+        Object.assign(data, {vid_type: "emotion"});
+        readWrite_PES(data);
+      });
+    }
+});
+app.post(['/3'], function(req, res) {
+    res.sendFile(__dirname + "/gesture.html");
+    if (req.method == 'POST') {
+      req.on('data', function (chunk) {
+        var data = querystring.parse(chunk.toString());
+        console.log(data);
+        Object.assign(data, {vid_type: "gesture"});
+        readWrite_PES(data);
+      });
+    }
+});
+  app.post(['/4'], function(req, res) {
+    res.sendFile(__dirname + "/speech_emotion.html");
+    if (req.method == 'POST') {
+      req.on('data', function (chunk) {
+        var data = querystring.parse(chunk.toString());
+        console.log(data);
+        Object.assign(data, {vid_type: "speech_emotion"});
+        readWrite_PES(data);
+      });
+    }
+});
+    app.post(['/5'], function(req, res) {
+    res.sendFile(__dirname + "/speech_gesture.html");
+    if (req.method == 'POST') {
+      req.on('data', function (chunk) {
+        var data = querystring.parse(chunk.toString());
+        console.log(data);
+        Object.assign(data, {vid_type: "speech_gesture"});
+        readWrite_PES(data);
+      });
+    }
+});
+app.post(['/6'], function(req, res) {
+    res.sendFile(__dirname + "/emotion_gesture.html");
+    if (req.method == 'POST') {
+      req.on('data', function (chunk) {
+        var data = querystring.parse(chunk.toString());
+        console.log(data);
+        Object.assign(data, {vid_type: "emotion_gesture"});
+        readWrite_PES(data);
+      });
+    }
+});
+app.post(['/7'], function(req, res) {
+    res.sendFile(__dirname + "/speech_emotion_gesture.html");
+    if (req.method == 'POST') {
+      req.on('data', function (chunk) {
+        var data = querystring.parse(chunk.toString());
+        console.log(data);
+        Object.assign(data, {vid_type: "speech_emotion_gesture"});
+        readWrite_PES(data);
+      });
+    }
+});
+
+
+app.post(['/lastPage'], function(req, res) {
+    res.sendFile(__dirname + "/lastpage.html");
+    if (req.method == 'POST') {
+      req.on('data', function (chunk) {
+        var data = querystring.parse(chunk.toString());
+        console.log(data);
+        readWrite_PES(data);
+      });
+    }
+});
+  function readWrite(input_data){
+    fs.appendFileSync('test.txt',String(input_data.gender)+" "+ String(input_data.age)+"\n");
+  }
+
+    function readWrite_PES(input_data){
+    fs.appendFileSync('test.txt',Object.values(input_data)+"\n");
+  }
